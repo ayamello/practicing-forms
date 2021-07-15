@@ -9,7 +9,7 @@ function App() {
     return(
         <div>
             <Switch>
-                <Route path="/cadastro">
+                <Route path="/">
                     <Register setVolunteer={setVolunteer} />
                 </Route>
                 <Route path="/cadastro-concluido">
