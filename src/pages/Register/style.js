@@ -8,6 +8,11 @@ export const Div = styled.div`
         display: none;
     }
 
+    .MsgError {
+        font-size: 10px;
+        color: red;
+    }
+
     .header {
         text-align: center;
         font-size: 18px;

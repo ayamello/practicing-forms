@@ -5,7 +5,7 @@ const { Switch, Route } = require("react-router-dom");
 
 function App() {
     const [volunteer, setVolunteer] = useState({});
-    console.log(volunteer)
+    
     return(
         <div>
             <Switch>

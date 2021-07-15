@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { volunteers } from '../../utils/volunteers';
 import { Div } from './style';
 import { useHistory } from "react-router-dom";
+import InputMask from 'react-input-mask';
 
 function Register({ setVolunteer }) {
     let history = useHistory();
@@ -23,8 +24,7 @@ function Register({ setVolunteer }) {
             .matches(/(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/g, "Senha inválida"),
         confirmPassword: yup.string()
             .required("Confirmação de senha é obrigatório")
-            .oneOf([yup.ref('password'), null], 'As senhas não são iguais'),
-        terms: yup.boolean().required("Aceitar os termos é obrigatório")
+            .oneOf([yup.ref('password'), null], 'As senhas não são iguais')
     });
 
     const {
@@ -39,8 +39,9 @@ function Register({ setVolunteer }) {
         setVolunteer(data);
         volunteers.push(data);
         history.push("/cadastro-concluido");
+        console.log(data.cellphone)
     }
-   
+  
     return(
         <Div className="divForm">
             <div className="header">
@@ -50,11 +51,15 @@ function Register({ setVolunteer }) {
             
             <form className="form" onSubmit={handleSubmit(handleSubmitRegister)}>
                 <label htmlFor="name">Nome</label>
-                <input type="text" id="name" placeholder="Nome*" {...register("name")} />
+                <input type="text" 
+                       id="name" 
+                       placeholder="Nome*" 
+                       {...register("name")} 
+                       onChange={e => e.target.value}/>            
                 
                 <div className="GenderAndBirthDate">
                     <label htmlFor="gender">Gênero</label>
-                    <select id="gender" {...register("gender")}>
+                    <select id="gender" {...register("gender")} onChange={e => e.target.value}>
                         <option>Gênero</option>
                         <option value="F">F</option>
                         <option value="M">M</option>
@@ -62,28 +67,53 @@ function Register({ setVolunteer }) {
                     </select>
                     
                     <label htmlFor="birthDate">Data de nascimento</label>
-                    <input type="date" id="birthDate" placeholder="Data de nascimento*" {...register("birthDate")} />
+                    <input type="date" 
+                           id="birthDate" 
+                           placeholder="Data de nascimento*" 
+                           {...register("birthDate")} 
+                           onChange={e => e.target.value}/>
+
                 </div>
                 
                 <label htmlFor="address">Endereço</label>
-                <input type="text" id="address" placeholder="Endereço*" {...register("address")}/>
-                
+                <input type="text" 
+                       id="address" 
+                       placeholder="Endereço*" 
+                       {...register("address")}
+                       onChange={e => e.target.value}/>  
+
                 <label htmlFor="cellphone">Whatsapp</label>
-                <input type="text" id="cellphone" placeholder="Whatsapp*" {...register("cellphone")} />
+                <input type="text" 
+                       id="cellphone" 
+                       placeholder="Whatsapp*" 
+                       {...register("cellphone")} 
+                       onChange={e => e.target.value}/>
                 
                 <label htmlFor="email">Email</label>
-                <input type="text" id="email" placeholder="Email*" {...register("email")} />
-                
+                <input type="text" 
+                       id="email" 
+                       placeholder="Email*" 
+                       {...register("email")} 
+                       onChange={e => e.target.value}/>   
+                                 
                 <div className="Passwords">
                     <label htmlFor="password">Senha</label>
-                    <input type="password" id="password" placeholder="Senha*" {...register("password")} />
+                    <input type="password" 
+                           id="password" 
+                           placeholder="Senha*" 
+                           {...register("password")} 
+                           onChange={e => e.target.value}/>
                     
                     <label htmlFor="confirmPassword">Confirmar senha</label>
-                    <input type="password" id="confirmPassword" placeholder="Confirmar senha*" {...register("confirmPassword")} />
+                    <input type="password" 
+                           id="confirmPassword" 
+                           placeholder="Confirmar senha*" 
+                           {...register("confirmPassword")} 
+                           onChange={e => e.target.value}/>
                 </div>
                 
                 <div className="TermsCheck">
-                    <input type="checkbox" id="terms" {...register("terms")} /> 
+                    <input type="checkbox" id="terms" {...register("terms")} required/> 
                     <label htmlFor="terms">Eu li e aceito os termos do grupo</label>
                 </div>
                 
