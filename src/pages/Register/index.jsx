@@ -3,9 +3,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { volunteers } from '../../utils/volunteers';
 import { Div } from './style';
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 
 function Register({ setVolunteer }) {
+    let history = useHistory();
 
     const formSchema = yup.object().shape({
         name: yup.string().required("Nome é obrigatório"),
@@ -36,6 +38,7 @@ function Register({ setVolunteer }) {
     function handleSubmitRegister(data) {
         setVolunteer(data);
         volunteers.push(data);
+        history.push("/cadastro-concluido");
     }
     
    
