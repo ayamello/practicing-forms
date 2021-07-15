@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { volunteers } from '../../utils/volunteers';
 import { Div } from './style';
 import { useHistory } from "react-router-dom";
+import InputMask from "react-input-mask";
 
 
 function Register({ setVolunteer }) {
@@ -19,6 +20,7 @@ function Register({ setVolunteer }) {
             .matches(/(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/g, "Whatsapp inválido"),
         email: yup.string().required("Email é obrigatório").email("Email inválido"),
         password: yup.string()
+            .min(8, "Mínimo 8 caracteres")
             .required("Senha é obrigatório")
             .matches(/(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/g, "Senha inválida"),
         confirmPassword: yup.string()
@@ -40,7 +42,6 @@ function Register({ setVolunteer }) {
         volunteers.push(data);
         history.push("/cadastro-concluido");
     }
-    
    
     return(
         <Div className="divForm">
