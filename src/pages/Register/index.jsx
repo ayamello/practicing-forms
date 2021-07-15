@@ -2,11 +2,10 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup"; 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { volunteers } from '../../utils/volunteers';
-import { useState } from "react";
 import { Div } from './style';
+import { Redirect } from "react-router-dom";
 
-function Register() {
-    const [volunteer, setVolunteer] = useState({});
+function Register({ setVolunteer }) {
 
     const formSchema = yup.object().shape({
         name: yup.string().required("Nome é obrigatório"),
@@ -15,11 +14,11 @@ function Register() {
         address: yup.string().required("Endereço é obrigatório"),
         cellphone: yup.string()
             .required("Whatsapp é obrigatório")
-            .matches("/(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/g", "Whatsapp inválido"),
+            .matches(/(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/g, "Whatsapp inválido"),
         email: yup.string().required("Email é obrigatório").email("Email inválido"),
         password: yup.string()
             .required("Senha é obrigatório")
-            .matches("/(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/g", "Senha inválida"),
+            .matches(/(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/g, "Senha inválida"),
         confirmPassword: yup.string()
             .required("Confirmação de senha é obrigatório")
             .oneOf([yup.ref('password'), null], 'As senhas não são iguais'),
@@ -38,7 +37,8 @@ function Register() {
         setVolunteer(data);
         volunteers.push(data);
     }
-
+    
+   
     return(
         <Div className="divForm">
             <div className="header">
@@ -53,6 +53,7 @@ function Register() {
                 <div className="GenderAndBirthDate">
                     <label htmlFor="gender">Gênero</label>
                     <select id="gender" {...register("gender")}>
+                        <option>Gênero</option>
                         <option value="F">F</option>
                         <option value="M">M</option>
                         <option value="Outro">Outro</option>
@@ -73,10 +74,10 @@ function Register() {
                 
                 <div className="Passwords">
                     <label htmlFor="password">Senha</label>
-                    <input type="text" id="password" placeholder="Senha*" {...register("password")} />
+                    <input type="password" id="password" placeholder="Senha*" {...register("password")} />
                     
                     <label htmlFor="confirmPassword">Confirmar senha</label>
-                    <input type="text" id="confirmPassword" placeholder="Confirmar senha*" {...register("confirmPassword")} />
+                    <input type="password" id="confirmPassword" placeholder="Confirmar senha*" {...register("confirmPassword")} />
                 </div>
                 
                 <div className="TermsCheck">

@@ -1,17 +1,19 @@
+import { useState } from 'react';
 import Register from './pages/Register';
 import RegisterCompleted from './pages/RegisterCompleted';
-
 const { Switch, Route } = require("react-router-dom");
 
 function App() {
+    const [volunteer, setVolunteer] = useState({});
+    
     return(
         <div>
             <Switch>
                 <Route path="/cadastro">
-                    <Register />
+                    <Register setVolunteer={setVolunteer} />
                 </Route>
                 <Route path="/cadastro-concluido">
-                    <RegisterCompleted />
+                    <RegisterCompleted volunteer={volunteer} />
                 </Route>
             </Switch>
         </div>
