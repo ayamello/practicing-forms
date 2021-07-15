@@ -2,8 +2,11 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup"; 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { volunteers } from '../../utils/volunteers';
+import { useState } from "react";
 
 function Register() {
+    const [volunteer, setVolunteer] = useState({});
+
     const formSchema = yup.object().shape({
         name: yup.string().required("Nome é obrigatório"),
         gender: yup.string().required("Gênero é obrigatório"),
@@ -31,11 +34,15 @@ function Register() {
     });
 
     function handleSubmitRegister(data) {
+        setVolunteer(data);
         volunteers.push(data);
     }
 
     return(
         <div className="divForm">
+            <p>Faça parte do Corações Cheios!</p>
+            <p>Cadastre-se</p>
+            
             <form className="form" onSubmit={handleSubmit(handleSubmitRegister)}>
                 <label htmlFor="name">Nome</label>
                 <input type="text" id="name" placeholder="Nome*" {...register("name")} />
