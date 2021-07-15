@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { volunteers } from '../../utils/volunteers';
 import { useState } from "react";
+import { Div } from './style';
 
 function Register() {
     const [volunteer, setVolunteer] = useState({});
@@ -39,36 +40,53 @@ function Register() {
     }
 
     return(
-        <div className="divForm">
-            <p>Faça parte do Corações Cheios!</p>
-            <p>Cadastre-se</p>
+        <Div className="divForm">
+            <div className="header">
+                <p>Faça parte do Corações Cheios!</p>
+                <span>Cadastre-se</span>
+            </div>
             
             <form className="form" onSubmit={handleSubmit(handleSubmitRegister)}>
                 <label htmlFor="name">Nome</label>
                 <input type="text" id="name" placeholder="Nome*" {...register("name")} />
-                {errors.name?.message}
-                <label htmlFor="gender">Gênero</label>
-                <select id="gender" {...register("gender")}>
-                    <option value="F">F</option>
-                    <option value="M">M</option>
-                    <option value="Outro">Outro</option>
-                </select>
-                <label htmlFor="birthDate">Data de nascimento</label>
-                <input type="date" id="birthDate" placeholder="Data de nascimento*" {...register("birthDate")} />
+                
+                <div className="GenderAndBirthDate">
+                    <label htmlFor="gender">Gênero</label>
+                    <select id="gender" {...register("gender")}>
+                        <option value="F">F</option>
+                        <option value="M">M</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                    
+                    <label htmlFor="birthDate">Data de nascimento</label>
+                    <input type="date" id="birthDate" placeholder="Data de nascimento*" {...register("birthDate")} />
+                </div>
+                
                 <label htmlFor="address">Endereço</label>
-                <input type="text" id="address" placeholder="Endereço*" {...register("address")} />
+                <input type="text" id="address" placeholder="Endereço*" {...register("address")}/>
+                
                 <label htmlFor="cellphone">Whatsapp</label>
                 <input type="text" id="cellphone" placeholder="Whatsapp*" {...register("cellphone")} />
+                
                 <label htmlFor="email">Email</label>
                 <input type="text" id="email" placeholder="Email*" {...register("email")} />
-                <label htmlFor="password">Senha</label>
-                <input type="text" id="password" placeholder="Senha*" {...register("password")} />
-                <label htmlFor="confirmPassword">Confirmar senha</label>
-                <input type="text" id="confirmPassword" placeholder="Confirmar senha*" {...register("confirmPassword")} />
-                <input type="checkbox" {...register("terms")} /> Eu li e aceito os termos do grupo.
+                
+                <div className="Passwords">
+                    <label htmlFor="password">Senha</label>
+                    <input type="text" id="password" placeholder="Senha*" {...register("password")} />
+                    
+                    <label htmlFor="confirmPassword">Confirmar senha</label>
+                    <input type="text" id="confirmPassword" placeholder="Confirmar senha*" {...register("confirmPassword")} />
+                </div>
+                
+                <div className="TermsCheck">
+                    <input type="checkbox" id="terms" {...register("terms")} /> 
+                    <label htmlFor="terms">Eu li e aceito os termos do grupo</label>
+                </div>
+                
                 <button type="submit">Cadastrar</button>
             </form>
-        </div>
+        </Div>
     );
 }
 
