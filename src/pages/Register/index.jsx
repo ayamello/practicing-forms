@@ -4,8 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { volunteers } from '../../utils/volunteers';
 import { Div } from './style';
 import { useHistory } from "react-router-dom";
-import InputMask from "react-input-mask";
-
 
 function Register({ setVolunteer }) {
     let history = useHistory();
