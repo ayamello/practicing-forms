@@ -1,3 +1,5 @@
+import React from 'react'
+import Confetti from 'react-confetti'
 import { Div } from './style';
 import { Done } from '@material-ui/icons';
 import imgCC from '../../assets/images/coracao-cc.png';
@@ -17,6 +19,11 @@ function RegisterCompleted({ volunteer }) {
 
     return(
         <Div>
+           <Confetti
+                width={window.width}
+                height={window.height}
+            /> 
+            
             <header>
                 <Done className="Done"/>
                 <span> Cadastro realizado!</span>
@@ -27,9 +34,9 @@ function RegisterCompleted({ volunteer }) {
                     Agora você é um Coração Cheio!
                 </p>
                 <div>
-                    {volunteer.gender === "F" && <span>Será adicionada no grupo do whatsapp em breve.</span>}
-                    {volunteer.gender === "M" && <span>Será adicionado no grupo do whatsapp em breve.</span>}
-                    {volunteer.gender === "Outro" && <span>Será adicionade no grupo do whatsapp em breve.</span>}
+                    {volunteer.gender === "F" && <span>Será adicionada ao grupo do whatsapp em breve.</span>}
+                    {volunteer.gender === "M" && <span>Será adicionado ao grupo do whatsapp em breve.</span>}
+                    {volunteer.gender === "Outro" && <span>Será adicionade ao grupo do whatsapp em breve.</span>}
                 </div>
             </div>
             

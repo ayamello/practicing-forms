@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Div = styled.div`
+    overflow: hidden;
+    
     header {
         display: flex;
         align-items: center;
