@@ -83,11 +83,12 @@ function Register({ setVolunteer }) {
                        onChange={e => e.target.value}/>  
 
                 <label htmlFor="cellphone">Whatsapp</label>
-                <input type="text" 
-                       id="cellphone" 
-                       placeholder="Whatsapp*" 
-                       {...register("cellphone")} 
-                       onChange={e => e.target.value}/>
+                <InputMask type="text" 
+                           id="cellphone" 
+                           mask="(99)99999-9999"
+                           placeholder="Whatsapp*" 
+                           {...register("cellphone")} 
+                           onChange={e => e.target.value}/>
                 
                 <label htmlFor="email">Email</label>
                 <input type="text" 
