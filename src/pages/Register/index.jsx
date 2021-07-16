@@ -55,7 +55,8 @@ function Register({ setVolunteer }) {
                        id="name" 
                        placeholder="Nome*" 
                        {...register("name")} 
-                       onChange={e => e.target.value}/>            
+                       onChange={e => e.target.value}/>      
+                <p className="MsgError">{errors.name?.message}</p>      
                 
                 <div className="GenderAndBirthDate">
                     <label htmlFor="gender">Gênero</label>
@@ -72,8 +73,8 @@ function Register({ setVolunteer }) {
                            placeholder="Data de nascimento*" 
                            {...register("birthDate")} 
                            onChange={e => e.target.value}/>
-
                 </div>
+                <p className="MsgError">{errors.birthDate?.message}</p>
                 
                 <label htmlFor="address">Endereço</label>
                 <input type="text" 
@@ -81,6 +82,7 @@ function Register({ setVolunteer }) {
                        placeholder="Endereço*" 
                        {...register("address")}
                        onChange={e => e.target.value}/>  
+                <p className="MsgError">{errors.address?.message}</p>
 
                 <label htmlFor="cellphone">Whatsapp</label>
                 <InputMask type="text" 
@@ -89,14 +91,16 @@ function Register({ setVolunteer }) {
                            placeholder="Whatsapp*" 
                            {...register("cellphone")} 
                            onChange={e => e.target.value}/>
-                
+                <p className="MsgError">{errors.cellphone?.message}</p>
+
                 <label htmlFor="email">Email</label>
                 <input type="text" 
                        id="email" 
                        placeholder="Email*" 
                        {...register("email")} 
                        onChange={e => e.target.value}/>   
-                                 
+                <p className="MsgError">{errors.email?.message}</p>
+
                 <div className="Passwords">
                     <label htmlFor="password">Senha</label>
                     <input type="password" 
@@ -112,6 +116,8 @@ function Register({ setVolunteer }) {
                            {...register("confirmPassword")} 
                            onChange={e => e.target.value}/>
                 </div>
+                <p className="MsgError">{errors.password?.message}</p>
+                <p className="MsgError">{errors.confirmPassword?.message}</p>
                 
                 <div className="TermsCheck">
                     <input type="checkbox" id="terms" {...register("terms")} required/> 
